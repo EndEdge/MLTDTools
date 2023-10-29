@@ -13,6 +13,7 @@ using OpenMLTD.MillionDance.Entities.Vmd;
 using OpenMLTD.MillionDance.Extensions;
 using OpenMLTD.MillionDance.Utilities;
 using OpenTK;
+using static OpenMLTD.MillionDance.Core.AppealHelper;
 
 namespace OpenMLTD.MillionDance.Core {
     partial class VmdCreator {
@@ -103,7 +104,8 @@ namespace OpenMLTD.MillionDance.Core {
 
             var baseFormationList = CollectFormationChanges(formationInfo, AppealType.None);
             var appealFormationList = CollectFormationChanges(formationInfo, appealType);
-            var appealTimes = AppealHelper.CollectAppealTimeInfo(baseScenario);
+            //var appealTimes = AppealHelper.CollectAppealTimeInfo(baseScenario);
+            var appealTimes = new AppealTimeInfo();
             var seekFrameControls = CollectSeekFrames(baseScenario, formationNumber);
 
             var seekFrameCounter = 0;
@@ -137,7 +139,8 @@ namespace OpenMLTD.MillionDance.Core {
                         projectedFrameIndex = indexInAppeal;
                     }
                 } else {
-                    projectedFrameIndex = CalculateSeekFrameTarget(mltdFrameIndex, seekFrameControls, ref lastSoughtFrame, ref seekFrameCounter);
+                    //projectedFrameIndex = CalculateSeekFrameTarget(mltdFrameIndex, seekFrameControls, ref lastSoughtFrame, ref seekFrameCounter);
+                    projectedFrameIndex = mltdFrameIndex;
                 }
 
                 var formationList = shouldUseAppeal ? appealFormationList : baseFormationList;
@@ -155,7 +158,11 @@ namespace OpenMLTD.MillionDance.Core {
                 var keyFrameIndexStart = projectedFrameIndex * animatedBoneCount;
 
                 for (var j = 0; j < animatedBoneCount; ++j) {
-                    var keyFrame = animation.KeyFrames[keyFrameIndexStart + j];
+                    if (keyFrameIndexStart + j >= animation.KeyFrames.Length)
+                    {
+                        Debug.Assert(keyFrameIndexStart + j < animation.KeyFrames.Length, "keyFrameIndexStart: " + keyFrameIndexStart + "; j: " + j);
+                    }
+                    var keyFrame = animation.KeyFrames[keyFrameIndexStart + j]; // TODO: NPE
                     var mltdBoneName = GetMltdBoneNameWithoutBodyScale(boneNameCache, keyFrame);
 
                     // Uniqueness is asserted above

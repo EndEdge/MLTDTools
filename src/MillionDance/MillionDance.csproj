@@ -8,8 +8,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>OpenMLTD.MillionDance</RootNamespace>
     <AssemblyName>MillionDance</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -24,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -201,6 +203,7 @@
     <Compile Include="FMain.TextBoxTracer.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="app.config" />
     <None Include="OpenTK.dll.config" />
     <None Include="Resources\facial_expr.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

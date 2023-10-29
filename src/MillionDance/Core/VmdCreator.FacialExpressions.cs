@@ -168,12 +168,11 @@ namespace OpenMLTD.MillionDance.Core {
                         // Don't generate frames for these control codes(?)
                         case LipCode.Control1:
                         case LipCode.Control2:
-                        case LipCode.Control3: {
+                        case LipCode.Control3:
+                        default:
                             shouldUpdateLastFrameTime = false;
                             break;
-                        }
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(lipCode), lipCode, "Invalid lip code.");
+                            //throw new ArgumentOutOfRangeException(nameof(lipCode), lipCode, "Invalid lip code.");
                     }
                 } else {
                     // Muted
@@ -243,9 +242,9 @@ namespace OpenMLTD.MillionDance.Core {
                 case LipCode.Control1:
                 case LipCode.Control2:
                 case LipCode.Control3:
-                    return false;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(code), code, "Invalid lip code.");
+                    return false;
+                    //throw new ArgumentOutOfRangeException(nameof(code), code, "Invalid lip code.");
             }
         }
 
@@ -268,13 +267,13 @@ namespace OpenMLTD.MillionDance.Core {
 
                 var eyesClosedRatio = exp.EyeClosed ? 1.0f : 0.0f;
 
-                frameList.Add(CreateFacialFrame(currentTime, "E_metoji_r", eyesClosedRatio));
-                frameList.Add(CreateFacialFrame(currentTime, "E_metoji_l", eyesClosedRatio));
+                //frameList.Add(CreateFacialFrame(currentTime, "E_metoji_r", eyesClosedRatio));
+                //frameList.Add(CreateFacialFrame(currentTime, "E_metoji_l", eyesClosedRatio));
 
                 if (i > 0) {
                     if (expControls[i - 1].EyeClosed != exp.EyeClosed) {
-                        frameList.Add(CreateFacialFrame(currentTime - HalfEyeBlinkTime, "E_metoji_r", 1 - eyesClosedRatio));
-                        frameList.Add(CreateFacialFrame(currentTime - HalfEyeBlinkTime, "E_metoji_l", 1 - eyesClosedRatio));
+                        //frameList.Add(CreateFacialFrame(currentTime - HalfEyeBlinkTime, "E_metoji_r", 1 - eyesClosedRatio));
+                        //frameList.Add(CreateFacialFrame(currentTime - HalfEyeBlinkTime, "E_metoji_l", 1 - eyesClosedRatio));
                     }
                 }
 

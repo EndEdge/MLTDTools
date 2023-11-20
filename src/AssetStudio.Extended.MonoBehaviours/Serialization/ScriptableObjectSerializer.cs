@@ -45,7 +45,7 @@ namespace AssetStudio.Extended.MonoBehaviours.Serialization {
                 throw new ArgumentNullException(nameof(monoBehavior));
             }
 
-            var typeNodes = monoBehavior.serializedType.m_Nodes;
+            var typeNodes = monoBehavior.serializedType.m_Type.m_Nodes;
 
             // Types nodes are empty, which means null
             if (typeNodes == null) {

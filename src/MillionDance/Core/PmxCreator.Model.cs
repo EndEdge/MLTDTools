@@ -861,7 +861,9 @@ namespace OpenMLTD.MillionDance.Core {
 
             if (material.HasMainTexture) {
                 if (mainTexture != null) {
-                    baseImage = mainTexture.ConvertToBitmap(material.ExtraProperties.ShouldFlip);
+                    //baseImage = mainTexture.ConvertToBitmap(material.ExtraProperties.ShouldFlip);
+                    //TODO: change another method
+                    baseImage = Create1x1WhiteBitmap();
                 } else {
                     baseImage = Create1x1WhiteBitmap();
                 }
@@ -879,7 +881,9 @@ namespace OpenMLTD.MillionDance.Core {
 
             if (material.HasSubTexture) {
                 if (subTexture != null) {
-                    baseImage = subTexture.ConvertToBitmap(material.ExtraProperties.ShouldFlip);
+                    //baseImage = subTexture.ConvertToBitmap(material.ExtraProperties.ShouldFlip);
+                    //TODO: change another method
+                    baseImage = Create1x1WhiteBitmap();
                 } else {
                     baseImage = Create1x1WhiteBitmap();
                 }

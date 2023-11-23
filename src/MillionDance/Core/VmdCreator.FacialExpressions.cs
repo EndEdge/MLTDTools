@@ -22,6 +22,10 @@ namespace OpenMLTD.MillionDance.Core {
                 frames = null;
             }
 
+            if (frames == null) {
+                return null;
+            }
+
             return new VmdMotion(ModelName, null, frames, null, null, null);
         }
 
@@ -60,7 +64,11 @@ namespace OpenMLTD.MillionDance.Core {
                 singControlTimes = singControls.SelectToArray(s => s.AbsoluteTime);
             }
 
-            Trace.Assert(lipSyncControls.Length > 0, "Lip-sync controls should exist.");
+            //Trace.Assert(lipSyncControls.Length > 0, "Lip-sync controls should exist.");
+
+            if (lipSyncControls == null || lipSyncControls.Length == 0) {
+                return null;
+            }
             Trace.Assert(lipSyncControls[0].Param == (int)LipCode.Closed, "The first control op should be 54.");
             Trace.Assert(lipSyncControls[lipSyncControls.Length - 1].Param == (int)LipCode.Closed, "The last control op should be 54.");
 

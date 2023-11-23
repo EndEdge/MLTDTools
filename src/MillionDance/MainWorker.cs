@@ -517,11 +517,23 @@ namespace OpenMLTD.MillionDance {
                         };
 
                         var lipVmd = creator.CreateLipSync(lipSyncInfo, p.FormationNumber, p.IgnoreSingControl);
+                        if (lipVmd == null) {
+                            lipSyncInfo = landscapeScenario;
+                            lipVmd = creator.CreateLipSync(lipSyncInfo, p.FormationNumber, p.IgnoreSingControl);
+                        }
+                        if (lipVmd == null) {
+                            lipSyncInfo = portraitScenario;
+                            lipVmd = creator.CreateLipSync(lipSyncInfo, p.FormationNumber, p.IgnoreSingControl);
+                        }
 
-                        Log("Saving lip sync...");
-
-                        using (var w = new VmdWriter(File.Open(p.OutputLipSync, FileMode.Create, FileAccess.Write, FileShare.Write))) {
-                            w.Write(lipVmd);
+                        if (lipVmd != null) {
+                            Log("Saving lip sync...");
+                            using (var w = new VmdWriter(File.Open(p.OutputLipSync, FileMode.Create, FileAccess.Write, FileShare.Write)))
+                            {
+                                w.Write(lipVmd);
+                            }
+                        } else {
+                            Log("Generating lip sync failed.");
                         }
                     }
 
